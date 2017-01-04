@@ -1,0 +1,17 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: test-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: test-job
+        spec:
+          containers:
+          - name: pi
+            image: fuzzdota/test-app:v1
+            command: ["/main"]
+          restartPolicy: OnFailure
